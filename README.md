@@ -1,4 +1,4 @@
-# hackathon_2025
+# Loft-to-Found
 nwHacks Hackathon 2025
 Authors:
 - Mehmet Berke Karadayi
