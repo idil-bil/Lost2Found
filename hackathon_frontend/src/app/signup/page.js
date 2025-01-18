@@ -14,8 +14,8 @@ export default function SignUp() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(""); // For displaying messages below the button
-  const router = useRouter(); // Initialize the router
+  const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,15 +24,14 @@ export default function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
-      const userEmail = userCredential.user.email; // Get user email
-      // Redirect to the home page with email as a query parameter
+      const userEmail = userCredential.user.email;
       router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -47,11 +46,10 @@ export default function SignUp() {
 
   const handleGoogleSignUp = async () => {
     setLoading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      const userEmail = userCredential.user.email; // Get user email
-      // Redirect to the home page with email as a query parameter
+      const userEmail = userCredential.user.email;
       router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       setMessage("An error occurred during Google sign-up. Please try again.");
@@ -61,7 +59,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#E8DBD9]">
       <Head>
         <title>Sign Up - Lost2Found</title>
         <meta
@@ -71,38 +69,31 @@ export default function SignUp() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="w-full py-8 bg-gradient-to-r from-blue-800 via-indigo-700 to-purple-600 shadow-md">
+      <header className="w-full py-8 bg-[#A15C38] shadow-md">
         <Link
           href="/"
-          className="absolute left-6 top-4 flex items-center gap-2 bg-gray-800 text-white px-5 py-3 rounded-md text-sm font-semibold shadow-md hover:bg-gray-700 transition"
+          className="absolute left-6 top-4 flex items-center gap-2 bg-[#C3A6A0] text-[#262220] px-5 py-3 rounded-md text-sm font-semibold shadow-md hover:bg-[#A15C38] hover:text-[#F7F1F0] transition"
         >
           <FiHome className="text-lg" />
           Home
         </Link>
-        <h1 className="text-center text-4xl font-extrabold text-white tracking-wide">
+        <h1 className="text-center text-4xl font-extrabold text-[#F7F1F0] tracking-wide">
           Lost2Found
         </h1>
-        <p className="mt-2 text-center text-indigo-200 text-sm">
+        <p className="mt-2 text-center text-[#C3A6A0] text-sm">
           Join the community and reconnect lost and found items.
         </p>
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-6 text-gray-800">
-        <div className="w-full max-w-lg rounded-xl bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 shadow-2xl p-8 border border-gray-700">
+      <main className="flex flex-1 flex-col items-center justify-center px-6 text-[#262220]">
+        <div className="w-full max-w-lg rounded-xl bg-[#C3A6A0] shadow-2xl p-8 border border-[#A15C38]">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <FiBox className="text-indigo-300 text-3xl" />
-            <h2 className="text-3xl font-bold text-white">Sign Up</h2>
+            <FiBox className="text-[#A15C38] text-3xl" />
+            <h2 className="text-3xl font-bold text-[#262220]">Sign Up</h2>
           </div>
-          <p className="mb-4 text-center text-indigo-200 text-lg max-w-sm mx-auto break-words">
-            Create an account to reconnect with your community.
-          </p>
-
           <form className="space-y-6" onSubmit={handleSignUp}>
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-indigo-300"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-[#A15C38]">
                 Email Address
               </label>
               <input
@@ -112,71 +103,41 @@ export default function SignUp() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full mt-1 px-4 py-2 text-gray-800 bg-gray-200 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full mt-1 px-4 py-2 text-[#262220] bg-[#F7F1F0] rounded-lg border border-[#A15C38] focus:outline-none focus:ring-2 focus:ring-[#A15C38]"
               />
             </div>
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-indigo-300"
-              >
+              <label htmlFor="password" className="block text-sm font-medium text-[#A15C38]">
                 Password
               </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full mt-1 px-4 py-2 text-gray-800 bg-gray-200 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-3 flex items-center text-indigo-400 hover:text-indigo-300"
-                >
-                  {showPassword ? <HiEyeOff size={20} /> : <HiEye size={20} />}
-                </button>
-              </div>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+                className="w-full mt-1 px-4 py-2 text-[#262220] bg-[#F7F1F0] rounded-lg border border-[#A15C38] focus:outline-none focus:ring-2 focus:ring-[#A15C38]"
+              />
             </div>
             <button
               type="submit"
-              className="w-full py-3 bg-indigo-500 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-600 transform hover:scale-105 transition duration-200"
-              disabled={loading}
+              className="w-full py-3 bg-[#A15C38] text-[#F7F1F0] font-semibold rounded-xl shadow-lg hover:bg-[#8E4F31] transform hover:scale-105 transition duration-200"
             >
               {loading ? "Signing Up..." : "Sign Up"}
             </button>
-          </form>
-
-          {/* Conditional Message Below the Button */}
-          {message && (
-            <p className="mt-4 text-center text-sm text-red-500">{message}</p>
-          )}
-
-          <div className="flex items-center justify-center mt-4">
             <button
+              type="button"
               onClick={handleGoogleSignUp}
-              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition transform hover:scale-105"
-              disabled={loading}
+              className="w-full py-3 bg-white text-[#262220] font-semibold rounded-xl shadow-lg flex items-center justify-center gap-2 hover:bg-[#F7F1F0] transform hover:scale-105 transition duration-200"
             >
-              <FcGoogle size={24} />
+              <FcGoogle size={24} /> Sign up with Google
             </button>
-          </div>
-          <p className="mt-4 text-center text-indigo-300 text-sm">
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              className="text-blue-400 hover:underline hover:text-blue-300"
-            >
-              Log In
-            </Link>
-          </p>
+          </form>
         </div>
       </main>
 
-      <footer className="w-full py-4 bg-gray-800 text-center text-sm text-indigo-300">
+      <footer className="w-full py-4 bg-[#262220] text-center text-sm text-[#F7F1F0]">
         &copy; {new Date().getFullYear()} Lost2Found. All rights reserved.
       </footer>
     </div>

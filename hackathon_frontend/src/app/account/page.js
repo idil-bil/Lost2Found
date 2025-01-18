@@ -5,7 +5,7 @@ import { FiBox, FiHome } from "react-icons/fi"; // Icon library import
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#E8DBD9]">
       <Head>
         <title>Lost2Found</title>
         <meta
@@ -15,31 +15,31 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="w-full py-8 bg-gradient-to-r from-blue-800 via-indigo-700 to-purple-600 shadow-md">
+      <header className="w-full py-8 bg-[#A15C38] shadow-md">
         <Link
           href="/"
-          className="absolute left-6 top-4 flex items-center gap-2 bg-gray-800 text-white px-5 py-3 rounded-md text-sm font-semibold shadow-md hover:bg-gray-700 transition"
+          className="absolute left-6 top-4 flex items-center gap-2 bg-[#C3A6A0] text-[#262220] px-5 py-3 rounded-md text-sm font-semibold shadow-md hover:bg-[#A15C38] hover:text-[#F7F1F0] transition"
         >
           <FiHome className="text-lg" />
           Home
         </Link>
-        <h1 className="text-center text-4xl font-extrabold text-white tracking-wide">
+        <h1 className="text-center text-4xl font-extrabold text-[#F7F1F0] tracking-wide">
           Lost2Found
         </h1>
-        <p className="mt-2 text-center text-indigo-200 text-sm">
+        <p className="mt-2 text-center text-[#C3A6A0] text-sm">
           Smart, community-driven solutions to reconnect lost and found items.
         </p>
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-6 text-gray-800">
-        <div className="w-full max-w-lg rounded-xl bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 shadow-2xl p-8 border border-gray-700">
+      <main className="flex flex-1 flex-col items-center justify-center px-6 text-[#262220]">
+        <div className="w-full max-w-lg rounded-xl bg-[#C3A6A0] shadow-2xl p-8 border border-[#A15C38]">
           <div className="flex items-center justify-center gap-3">
-            <FiBox className="text-indigo-300 text-3xl" />
-            <h2 className="text-3xl font-bold text-white whitespace-nowrap">
+            <FiBox className="text-[#A15C38] text-3xl" />
+            <h2 className="text-3xl font-bold text-[#262220] whitespace-nowrap">
               Welcome to Lost2Found
             </h2>
           </div>
-          <p className="mt-4 text-center text-indigo-200 text-lg">
+          <p className="mt-4 text-center text-[#262220] text-lg">
             A smart, AI-powered platform that connects people with their lost
             belongings. Let us help you reunite items with their rightful
             owners.
@@ -47,13 +47,13 @@ export default function HomePage() {
           <div className="mt-6 flex flex-col gap-4 items-center">
             <Link
               href="/login"
-              className="w-64 text-center font-semibold py-3 px-5 rounded-xl shadow-lg bg-indigo-500 text-white font-medium hover:bg-indigo-600 transform hover:scale-105 transition duration-200"
+              className="w-64 text-center font-semibold py-3 px-5 rounded-xl shadow-lg bg-[#A15C38] text-[#F7F1F0] font-medium hover:bg-[#8E4F31] transform hover:scale-105 transition duration-200"
             >
               Log In
             </Link>
             <Link
               href="/signup"
-              className="w-64 text-center font-semibold py-3 px-5 rounded-xl shadow-lg bg-blue-500 text-white font-medium hover:bg-blue-600 transform hover:scale-105 transition duration-200"
+              className="w-64 text-center font-semibold py-3 px-5 rounded-xl shadow-lg bg-[#E8DBD9] text-[#262220] border-2 border-[#A15C38] font-medium hover:bg-[#C3A6A0] transform hover:scale-105 transition duration-200"
             >
               Sign Up
             </Link>
@@ -61,7 +61,7 @@ export default function HomePage() {
         </div>
       </main>
 
-      <footer className="w-full py-4 bg-gray-800 text-center text-sm text-indigo-300">
+      <footer className="w-full py-4 bg-[#262220] text-center text-sm text-[#F7F1F0]">
         &copy; {new Date().getFullYear()} Lost2Found. All rights reserved.
       </footer>
     </div>
