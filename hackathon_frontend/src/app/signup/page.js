@@ -13,6 +13,7 @@ export default function SignUp() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(""); // For displaying messages below the button
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,15 +22,20 @@ export default function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setMessage(""); // Clear previous messages
     try {
       await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
-      alert("Sign-Up successful!");
+      setMessage("Sign-Up successful! Welcome to Lost2Found.");
     } catch (error) {
-      alert(error.message);
+      if (error.code === "auth/email-already-in-use") {
+        setMessage("An account with this email already exists. Please log in.");
+      } else {
+        setMessage("An error occurred during sign-up. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -37,11 +43,12 @@ export default function SignUp() {
 
   const handleGoogleSignUp = async () => {
     setLoading(true);
+    setMessage(""); // Clear previous messages
     try {
       await signInWithPopup(auth, googleProvider);
-      alert("Signed up with Google successfully!");
+      setMessage("Signed up with Google successfully!");
     } catch (error) {
-      alert(error.message);
+      setMessage("An error occurred during Google sign-up. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -136,6 +143,12 @@ export default function SignUp() {
               {loading ? "Signing Up..." : "Sign Up"}
             </button>
           </form>
+
+          {/* Conditional Message Below the Button */}
+          {message && (
+            <p className="mt-4 text-center text-sm text-red-500">{message}</p>
+          )}
+
           <div className="flex items-center justify-center mt-4">
             <button
               onClick={handleGoogleSignUp}
