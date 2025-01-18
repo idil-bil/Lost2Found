@@ -2,6 +2,7 @@
 
 // src/app/signin.js
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { auth, googleProvider } from "@/firebase";
@@ -14,6 +15,8 @@ export default function LogIn() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter(); // Initialize the router
+  const [message, setMessage] = useState(""); // For displaying messages below the button
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,11 +25,20 @@ export default function LogIn() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setMessage(""); // Clear previous messages
     try {
-      await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      alert("Log in successful!");
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      const userEmail = userCredential.user.email; // Get user email
+      // Redirect to the home page with email as a query parameter
+      router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
-      alert(error.message);
+      setMessage(
+        "An error occurred during login. Please check your credentials."
+      );
     } finally {
       setLoading(false);
     }
@@ -34,11 +46,14 @@ export default function LogIn() {
 
   const handleGoogleLogin = async () => {
     setLoading(true);
+    setMessage(""); // Clear previous messages
     try {
-      await signInWithPopup(auth, googleProvider);
-      alert("Logged in with Google successfully!");
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      const userEmail = userCredential.user.email; // Get user email
+      // Redirect to the home page with email as a query parameter
+      router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
-      alert(error.message);
+      setMessage("An error occurred during Google login. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -132,6 +147,10 @@ export default function LogIn() {
               {loading ? "Logging In..." : "Log In"}
             </button>
           </form>
+          {/* Conditional Message Below the Button */}
+          {message && (
+            <p className="mt-4 text-center text-sm text-red-500">{message}</p>
+          )}
           <div className="flex items-center justify-center mt-4">
             <button
               onClick={handleGoogleLogin}

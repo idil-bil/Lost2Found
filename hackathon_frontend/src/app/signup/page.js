@@ -2,6 +2,7 @@
 
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { auth, googleProvider } from "@/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
@@ -14,6 +15,7 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(""); // For displaying messages below the button
+  const router = useRouter(); // Initialize the router
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,12 +26,14 @@ export default function SignUp() {
     setLoading(true);
     setMessage(""); // Clear previous messages
     try {
-      await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
-      setMessage("Sign-Up successful! Welcome to Lost2Found.");
+      const userEmail = userCredential.user.email; // Get user email
+      // Redirect to the home page with email as a query parameter
+      router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setMessage("An account with this email already exists. Please log in.");
@@ -45,8 +49,10 @@ export default function SignUp() {
     setLoading(true);
     setMessage(""); // Clear previous messages
     try {
-      await signInWithPopup(auth, googleProvider);
-      setMessage("Signed up with Google successfully!");
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      const userEmail = userCredential.user.email; // Get user email
+      // Redirect to the home page with email as a query parameter
+      router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       setMessage("An error occurred during Google sign-up. Please try again.");
     } finally {
