@@ -1,4 +1,4 @@
-# Lost-to-Found
+# Lost2Found
 nwHacks Hackathon 2025
 Authors:
 - Mehmet Berke Karadayi
