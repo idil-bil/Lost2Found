@@ -19,22 +19,22 @@ export default function LeftPanel({ user }) {
   };
 
   return (
-    <div className="h-screen w-72 bg-gray-900 text-gray-200 flex flex-col justify-between p-6 py-10">
+    <div className="h-screen w-72 bg-[#C3A6A0] text-[#262220] flex flex-col justify-between p-6 py-10">
       {/* Title and Separating Line */}
       <div>
-        <h1 className="text-2xl font-extrabold text-indigo-400 text-center mb-2">
+        <h1 className="text-2xl font-extrabold text-[#A15C38] text-center mb-2">
           Lost2Found
         </h1>
-        <hr className="border-gray-700 mb-4" />
+        <hr className="border-[#A15C38] mb-4" />
 
         {/* Navigation */}
         <nav className="space-y-2 py-6">
           <Link
             href="/"
-            className={`flex items-center gap-4 px-4 py-2 rounded-md ${
+            className={`flex items-center font-bold gap-4 px-4 py-2 rounded-md ${
               currentPath === "/"
-                ? "bg-indigo-500 text-white"
-                : "hover:bg-gray-700 hover:text-white"
+                ? "bg-[#A15C38] text-[#F7F1F0]"
+                : "hover:bg-[#E8DBD9] hover:text-[#262220]"
             }`}
           >
             <FiHome size={20} />
@@ -42,10 +42,10 @@ export default function LeftPanel({ user }) {
           </Link>
           <Link
             href="/my-postings"
-            className={`flex items-center gap-4 px-4 py-2 rounded-md ${
+            className={`flex items-center font-bold gap-4 px-4 py-2 rounded-md ${
               currentPath === "/my-postings"
-                ? "bg-indigo-500 text-white"
-                : "hover:bg-gray-700 hover:text-white"
+                ? "bg-[#A15C38] text-[#F7F1F0]"
+                : "hover:bg-[#E8DBD9] hover:text-[#262220]"
             }`}
           >
             <FiList size={20} />
@@ -53,57 +53,44 @@ export default function LeftPanel({ user }) {
           </Link>
           <Link
             href="/messages"
-            className={`flex items-center gap-4 px-4 py-2 rounded-md ${
+            className={`flex items-center font-bold gap-4 px-4 py-2 rounded-md ${
               currentPath === "/messages"
-                ? "bg-indigo-500 text-white"
-                : "hover:bg-gray-700 hover:text-white"
+                ? "bg-[#A15C38] text-[#F7F1F0]"
+                : "hover:bg-[#E8DBD9] hover:text-[#262220]"
             }`}
           >
             <FiMessageSquare size={20} />
             Messages
-          </Link>
-          <Link
-            href="/account"
-            className={`flex items-center gap-4 px-4 py-2 rounded-md ${
-              currentPath === "/account"
-                ? "bg-indigo-500 text-white"
-                : "hover:bg-gray-700 hover:text-white"
-            }`}
-          >
-            <FiUser size={20} />
-            Account
           </Link>
         </nav>
       </div>
 
       {/* User Info */}
       <div className="mt-6">
-        <hr className="border-gray-700 mb-4" />
+        <hr className="border-[#A15C38] mb-4" />
 
         {user ? (
           <div>
-            <p className="text-sm text-gray-400 mb-4">
-              Logged in as:{" "}
-              <span className="text-white font-medium">{user.email}</span>
+            <p className="text-sm text-[#262220] mb-4">
+              Logged in as: <span className="font-bold ">{user.email}</span>
             </p>
             <button
               onClick={handleLogout}
-              className="w-full px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition"
+              className="w-full px-4 py-2 bg-[#A15C38] text-[#F7F1F0] rounded-xl hover:bg-[#8E4F31] transition"
             >
               Log Out
             </button>
           </div>
         ) : (
-          <p className="text-sm text-gray-400">
-            Please{" "}
-            <Link href="/login" className="text-indigo-400 underline">
-              log in
+          <p className="text-m text-[#262220]">
+            Please access your{" "}
+            <Link
+              href="/account"
+              className=" text-[#A15C38] font-bold hover:underline hover:text-[#8E4F31]"
+            >
+              account
             </Link>{" "}
-            or{" "}
-            <Link href="/signup" className="text-indigo-400 underline">
-              sign up
-            </Link>{" "}
-            to access your profile.
+            to create a new post.
           </p>
         )}
       </div>

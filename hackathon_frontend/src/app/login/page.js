@@ -60,7 +60,7 @@ export default function LogIn() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#E8DBD9]">
       <Head>
         <title>Log In - Lost2Found</title>
         <meta
@@ -70,36 +70,36 @@ export default function LogIn() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="w-full py-8 bg-gradient-to-r from-blue-800 via-indigo-700 to-purple-600 shadow-md">
+      <header className="w-full py-8 bg-[#A15C38] shadow-md">
         <Link
           href="/"
-          className="absolute left-6 top-4 flex items-center gap-2 bg-gray-800 text-white px-5 py-3 rounded-md text-sm font-semibold shadow-md hover:bg-gray-700 transition"
+          className="absolute left-6 top-4 flex items-center gap-2 bg-[#C3A6A0] text-[#262220] px-5 py-3 rounded-md text-sm font-semibold shadow-md hover:bg-[#A15C38] hover:text-[#F7F1F0] transition"
         >
           <FiHome className="text-lg" />
           Home
         </Link>
-        <h1 className="text-center text-4xl font-extrabold text-white tracking-wide">
+        <h1 className="text-center text-4xl font-extrabold text-[#F7F1F0] tracking-wide">
           Lost2Found
         </h1>
-        <p className="mt-2 text-center text-indigo-200 text-sm">
+        <p className="mt-2 text-center text-[#C3A6A0] text-sm">
           Log in to continue connecting with your community.
         </p>
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-6 text-gray-800">
-        <div className="w-full max-w-lg rounded-xl bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 shadow-2xl p-8 border border-gray-700">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <FiBox className="text-indigo-300 text-3xl" />
-            <h2 className="text-3xl font-bold text-white">Log In</h2>
+      <main className="flex flex-1 flex-col items-center justify-center px-6 text-[#262220]">
+        <div className="w-full max-w-lg rounded-xl bg-[#C3A6A0] shadow-2xl p-8 border border-[#A15C38]">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <FiBox className="text-[#A15C38] text-3xl" />
+            <h2 className="text-3xl font-bold text-[#262220]">Log In</h2>
           </div>
-          <p className="mb-4 text-center text-indigo-200 text-lg max-w-sm mx-auto break-words">
+          <p className="mb-4 text-center text-stone-800 text-lg max-w-sm mx-auto break-words">
             Enter your credentials to access your account.
           </p>
           <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-indigo-300"
+                className="block text-sm font-medium text-[#A15C38]"
               >
                 Email Address
               </label>
@@ -110,13 +110,13 @@ export default function LogIn() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full mt-1 px-4 py-2 text-gray-800 bg-gray-200 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full mt-1 px-4 py-2 text-[#262220] bg-[#F7F1F0] rounded-lg border border-[#A15C38] focus:outline-none focus:ring-2 focus:ring-[#A15C38]"
               />
             </div>
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-indigo-300"
+                className="block text-sm font-medium text-[#A15C38]"
               >
                 Password
               </label>
@@ -128,12 +128,12 @@ export default function LogIn() {
                   value={formData.password}
                   onChange={handleInputChange}
                   required
-                  className="w-full mt-1 px-4 py-2 text-gray-800 bg-gray-200 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full mt-1 px-4 py-2 text-[#262220] bg-[#F7F1F0] rounded-lg border border-[#A15C38] focus:outline-none focus:ring-2 focus:ring-[#A15C38]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-3 flex items-center text-indigo-400 hover:text-indigo-300"
+                  className="absolute inset-y-0 right-3 flex items-center text-[#A15C38] hover:text-[#8E4F31]"
                 >
                   {showPassword ? <HiEyeOff size={20} /> : <HiEye size={20} />}
                 </button>
@@ -141,30 +141,31 @@ export default function LogIn() {
             </div>
             <button
               type="submit"
-              className="w-full py-3 bg-indigo-500 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-600 transform hover:scale-105 transition duration-200"
+              className="w-full py-3 bg-[#A15C38] text-[#F7F1F0] font-semibold rounded-xl shadow-lg hover:bg-[#8E4F31] transform hover:scale-105 transition duration-200"
               disabled={loading}
             >
               {loading ? "Logging In..." : "Log In"}
             </button>
           </form>
-          {/* Conditional Message Below the Button */}
           {message && (
-            <p className="mt-4 text-center text-sm text-red-500">{message}</p>
+            <p className="mt-4 text-center  text-sm text-[#c70300]">
+              {message}
+            </p>
           )}
           <div className="flex items-center justify-center mt-4">
             <button
               onClick={handleGoogleLogin}
-              className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition transform hover:scale-105"
+              className="w-12 h-12 bg-[#F7F1F0] text-[#262220] rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition transform hover:scale-105"
               disabled={loading}
             >
               <FcGoogle size={24} />
             </button>
           </div>
-          <p className="mt-4 text-center text-indigo-300 text-sm">
+          <p className="mt-4 text-center text-[#A15C38] text-sm">
             Don’t have an account?{" "}
             <Link
               href="/signup"
-              className="text-blue-400 hover:underline hover:text-blue-300"
+              className="text-[#8E4F31] font-bold hover:underline hover:text-[#A15C38]"
             >
               Sign Up
             </Link>
@@ -172,7 +173,7 @@ export default function LogIn() {
         </div>
       </main>
 
-      <footer className="w-full py-4 bg-gray-800 text-center text-sm text-indigo-300">
+      <footer className="w-full py-4 bg-[#262220] text-center text-sm text-[#F7F1F0]">
         &copy; {new Date().getFullYear()} Lost2Found. All rights reserved.
       </footer>
     </div>
