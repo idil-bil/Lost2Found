@@ -14,8 +14,8 @@ export default function SignUp() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(""); // For displaying messages below the button
-  const router = useRouter(); // Initialize the router
+  const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,15 +24,14 @@ export default function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
-      const userEmail = userCredential.user.email; // Get user email
-      // Redirect to the home page with email as a query parameter
+      const userEmail = userCredential.user.email;
       router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -47,11 +46,10 @@ export default function SignUp() {
 
   const handleGoogleSignUp = async () => {
     setLoading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      const userEmail = userCredential.user.email; // Get user email
-      // Redirect to the home page with email as a query parameter
+      const userEmail = userCredential.user.email;
       router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       setMessage("An error occurred during Google sign-up. Please try again.");
@@ -158,11 +156,12 @@ export default function SignUp() {
 
           <div className="flex items-center justify-center mt-4">
             <button
+              type="button"
               onClick={handleGoogleSignUp}
               className="w-12 h-12 bg-[#F7F1F0] text-[#262220] rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition transform hover:scale-105"
               disabled={loading}
             >
-              <FcGoogle size={24} />
+              <FcGoogle size={24} /> Sign up with Google
             </button>
           </div>
           <p className="mt-4 text-center text-[#A15C38] text-sm">

@@ -1,6 +1,5 @@
 "use client";
 
-// src/app/signin.js
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -15,8 +14,8 @@ export default function LogIn() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter(); // Initialize the router
-  const [message, setMessage] = useState(""); // For displaying messages below the button
+  const router = useRouter();
+  const [message, setMessage] = useState("");
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,15 +24,14 @@ export default function LogIn() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
-      const userEmail = userCredential.user.email; // Get user email
-      // Redirect to the home page with email as a query parameter
+      const userEmail = userCredential.user.email;
       router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       setMessage(
@@ -46,11 +44,10 @@ export default function LogIn() {
 
   const handleGoogleLogin = async () => {
     setLoading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      const userEmail = userCredential.user.email; // Get user email
-      // Redirect to the home page with email as a query parameter
+      const userEmail = userCredential.user.email;
       router.push(`/?email=${encodeURIComponent(userEmail)}`);
     } catch (error) {
       setMessage("An error occurred during Google login. Please try again.");
@@ -154,11 +151,12 @@ export default function LogIn() {
           )}
           <div className="flex items-center justify-center mt-4">
             <button
+              type="button"
               onClick={handleGoogleLogin}
               className="w-12 h-12 bg-[#F7F1F0] text-[#262220] rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition transform hover:scale-105"
               disabled={loading}
             >
-              <FcGoogle size={24} />
+              <FcGoogle size={24} /> Log in with Google
             </button>
           </div>
           <p className="mt-4 text-center text-[#A15C38] text-sm">

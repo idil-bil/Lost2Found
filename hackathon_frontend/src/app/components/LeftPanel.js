@@ -1,18 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // New hook for App Router
+import { usePathname } from "next/navigation";
 import { FiHome, FiList, FiMessageSquare, FiUser } from "react-icons/fi";
 import { signOut } from "firebase/auth";
-import { auth } from "@/firebase"; // Ensure this is correctly imported
+import { auth } from "@/firebase";
 
 export default function LeftPanel({ user }) {
-  const currentPath = usePathname(); // Automatically gets the current path
+  const currentPath = usePathname();
 
   const handleLogout = async () => {
     try {
-      await signOut(auth); // Sign out the user using Firebase
-      window.location.href = "/login"; // Redirect to the login page after logout
+      await signOut(auth);
+      window.location.href = "/login";
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -27,7 +27,6 @@ export default function LeftPanel({ user }) {
         </h1>
         <hr className="border-[#A15C38] mb-4" />
 
-        {/* Navigation */}
         <nav className="space-y-2 py-6">
           <Link
             href="/"
@@ -65,7 +64,6 @@ export default function LeftPanel({ user }) {
         </nav>
       </div>
 
-      {/* User Info */}
       <div className="mt-6">
         <hr className="border-[#A15C38] mb-4" />
 
