@@ -156,7 +156,7 @@ export default function LogIn() {
               className="w-12 h-12 bg-[#F7F1F0] text-[#262220] rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition transform hover:scale-105"
               disabled={loading}
             >
-              <FcGoogle size={24} /> Log in with Google
+              <FcGoogle size={24} />
             </button>
           </div>
           <p className="mt-4 text-center text-[#A15C38] text-sm">
