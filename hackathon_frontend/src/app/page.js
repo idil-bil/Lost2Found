@@ -1,9 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import LeftPanel from "./components/LeftPanel";
 import UploadForm from "./components/UploadForm";
-import SortOptions from "./components/SortOptions";
 import PostList from "./components/PostList";
 
 export default function HomePage() {
@@ -14,6 +14,12 @@ export default function HomePage() {
     ? { email } // If email exists in query, consider the user logged in
     : null; // Otherwise, no user is logged in
 
+  const [posts, setPosts] = useState([]); // Manage posts state
+
+  const addPost = (newPost) => {
+    setPosts((prevPosts) => [newPost, ...prevPosts]); // Add the new post to the beginning
+  };
+
   return (
     <div className="flex h-screen">
       {/* Left Panel */}
@@ -22,13 +28,10 @@ export default function HomePage() {
       {/* Main Content */}
       <div className="flex-1 p-6 bg-[#F7F1F0]">
         {/* Header Section */}
-        <UploadForm user={user} />
-
-        {/* Sorting Options */}
-        <SortOptions />
+        <UploadForm user={user} addPost={addPost} />
 
         {/* Listings Section */}
-        <PostList />
+        <PostList posts={posts} />
       </div>
     </div>
   );
