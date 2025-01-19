@@ -19,7 +19,7 @@ export default function LeftPanel({ user }) {
   };
 
   return (
-    <div className="h-screen w-72 bg-[#C3A6A0] text-[#262220] flex flex-col justify-between p-6 py-10">
+    <div className="fixed h-screen w-72 bg-[#C3A6A0] text-[#262220] flex flex-col justify-between p-6 py-10">
       {/* Title and Separating Line */}
       <div>
         <h1 className="text-2xl font-extrabold text-[#A15C38] text-center mb-2">
