@@ -5,20 +5,20 @@ const pool = require("../config/db");
 
 // POST /post route
 router.post("/post", async (req, res) => {
-    const { email, image_url, description } = req.body;
+    const { email, image_url, description, category } = req.body;
 
     console.log("Request Body:", req.body); // Debug log
 
-    if (!email || !description) {
+    if (!email || !description || !category) {
         return res.status(400).json({ error: "All fields are required." });
     }
 
     try {
         const query = `
-            INSERT INTO posts (email, image_url, description)
-            VALUES ($1, $2, $3) RETURNING *;
+            INSERT INTO posts (email, image_url, description, category)
+            VALUES ($1, $2, $3, $4) RETURNING *;
         `;
-        const values = [email, image_url, description];
+        const values = [email, image_url, description, category];
         const result = await pool.query(query, values);
 
         res.status(201).json(result.rows[0]);
