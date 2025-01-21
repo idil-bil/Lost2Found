@@ -9,7 +9,7 @@ This project is a Lost-and-Found website developed. It enables users to post ite
 - Kerem Oktay
 
 ## Tech Stack
-- Frontend: Next.js
+- Frontend: Next.js and Tailwind CSS
 - Backend: Node.js and FastAPI
 - Database: PostgreSQL
 - AI Model: Sentence Transformers (all-MiniLM-L6-v2)
